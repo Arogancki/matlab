@@ -15,5 +15,4 @@ for a = [2, 2.9, 3, 3.56, 3.9];
     i=i+1;
 end
 
-% przyklad pokazuuje efekt motyla - mala zmiana na poczatku wprowadza
-% wielka zmiane po jakims czasie
+% przykla
