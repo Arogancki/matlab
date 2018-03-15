@@ -1,0 +1,2 @@
+fi+(k/l)+(g/l)sin(fi)=0
+fi=-(k/m)fi-(g/l)sin(fi)
