@@ -1,15 +1,15 @@
 function y = system1(x)
 
-mi_bm = trapez(x, 0, 0, 25, 35);
-mi_m = trojkat(x, 25, 35, 45);
-mi_s = trojkat(x, 35, 45, 55);
-mi_st = trojkat(x, 45, 55, 65);
-mi_bst = trapez(x, 55, 65, 80, 80);
+mi_bm =  trapez(x, 15, 15, 18, 30);
+mi_m = trojkat(x, 18, 30, 42);
+mi_sr = trojkat(x, 30, 42, 54);
+mi_s = trojkat(x, 42, 54, 64);
+mi_bs =  trapez(x, 54, 64, 70, 70);
 
-suma = mi_bm + mi_m + mi_s + mi_st + mi_bst;
+suma = mi_bm+mi_m+mi_sr+mi_s+mi_bs;
 
 if suma==0
    y = 0;
 else 
-   y = (mi_bm*0.2 + mi_m*0.4 + mi_s*1 + mi_st*0.8 + mi_bst*0.6)/suma;
+   y = (mi_bm*0 +mi_m*50 +mi_sr*100 +mi_s*75 +mi_bs*50 )/suma;
 end
