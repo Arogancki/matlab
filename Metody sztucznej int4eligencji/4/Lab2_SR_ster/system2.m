@@ -3,38 +3,41 @@ function y = system2(x)
 x1 = x(1);
 x2 = x(2);
 
-mi_m1 = trapez(x1, 18, 18, 25, 35);
-mi_d1 = trojkat(x1, 25, 35, 50);
-mi_s1 = trapez(x1, 35, 50, 60, 70);
-mi_e1 = trapez(x1, 60, 70, 80, 80);
+Bbl = trapez(x1, -180, -180, -40, -20);
+Bl = trojkat(x1, -40, -20, 0);
+Bo = trojkat(x1, -20, 0, 20);
+Bp  = trojkat(x1, 0, 20, 40);
+Bbp = trojkat(x1, 20, 40, 180);
 
-mi_m2 = trojkat(x2, 0, 0, 50);
-mi_s2 = trojkat(x2, 0, 50, 100);
-mi_d2 = trojkat(x2, 50, 100, 150);
-mi_bd2 = trojkat(x2, 100, 150, 150);
+Pu = trapez(x2, -0.4, -0.4, -0.1, 0);
+Po = trojkat(x2, -0.1, 0, 0.1);
+Pd = trapez(x2, 0, 0.1, 0.4, 0.4);
 
-oz = 0;
-niski = 0.2;
-sredni = 0.5;
-duzy = 1;
+Kbls = -20;
+Kls = -15;
+Kos = 0;
+Kps = 15;
+Kbps = 20;
 
-% dla oz
-mi_oz =     max([ min(mi_d1,mi_m2) min(mi_s1,mi_m2) min(mi_d1,mi_s2) ]);
+%{
+Kbl = sum(Pu*Bbl + Pu*Bl);
+Kl = sum(Po*Bbl + Po*Bl);
+Ko = sum(Pd*Bbl + Pd*Bl + Pu*Bo + Po*Bo + Pd*Bo + Pu*Bp + Pu*Bbp);
+Kp = sum(Po*Bbp + Po*Bp);
+Kbp = sum(Pd*Bbp + Pd*Bp);
+%}
 
-% dla niski
-mi_niski =  max([ min(mi_m1,mi_m2) min(mi_s1,mi_s2) min(mi_d1,mi_d2) ]);
+Kbl = max(Pu*Bbl + Pu*Bl);
+Kl = max(Po*Bbl + Po*Bl);
+Ko = max(Pd*Bbl + Pd*Bl + Pu*Bo + Po*Bo + Pd*Bo + Pu*Bp + Pu*Bbp);
+Kp = max(Po*Bbp + Po*Bp);
+Kbp = max(Pd*Bbp + Pd*Bp);
 
-% dla sredni
-mi_sredni = max([ min(mi_e1,mi_m2) min(mi_m1,mi_s2) min(mi_s1,mi_d2) min(mi_d1,mi_bd2) ]);
 
-% dla duzy
-mi_duzy =   max([ min(mi_e1,mi_s2) min(mi_m1,mi_d2) min(mi_e1,mi_d2) min(mi_m1,mi_bd2) ...
-                 min(mi_s1,mi_bd2) min(mi_e1,mi_bd2) ]);
-
-suma = mi_oz + mi_niski + mi_sredni + mi_duzy;
+suma = Kbl + Kl + Ko + Kp + Kbp;
 
 if suma==0
    y = 0;
 else 
-   y = (oz*mi_oz + niski*mi_niski + sredni*mi_sredni + duzy*mi_duzy)/suma;
+   y = (Kbl*Kbls + Kl*Kls + Ko*Kos + Kp*Kps + Kbp*Kbps)/suma;
 end
